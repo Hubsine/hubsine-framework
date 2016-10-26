@@ -2,6 +2,10 @@ services:
     container:
         class: %container.class%
         synthetic: true 
+    loader_factory:
+        class: %loader_factory.class%
+        synthetic: true
+        arguments: ['@container']
     session:
         class: %session.class%
         synthetic: true

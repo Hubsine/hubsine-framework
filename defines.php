@@ -19,7 +19,7 @@ define('HF_PLUGIN_DIR',            realpath( __DIR__ ) );
 define('HF_SRC_DIR',               HF_PLUGIN_DIR . '/src');
 define('HF_LIB_DIR',               HF_PLUGIN_DIR . '/lib');
 define('HF_VENDOR_DIR',            HF_PLUGIN_DIR . '/vendor');
-define('HF_RESOURCES_DIR',         HF_SRC_DIR    . '/resources');
+define('HF_RESOURCES_DIR',         HF_PLUGIN_DIR . '/resources');
 
 ###
 # Resources DIR
@@ -28,7 +28,7 @@ define('HF_RESOURCES_DIR',         HF_SRC_DIR    . '/resources');
 define('HF_VIEWS_DIR',             HF_RESOURCES_DIR . '/views');
 define('HF_VIEWS_FORMS_DIR',       HF_VIEWS_DIR     . '/forms');
 define('HF_LOCALES_TRANS_DIR',     HF_RESOURCES_DIR . '/translations');
-define('HF_CONFIG_DIR',            HF_RESOURCES_DIR        . '/config');
+define('HF_CONFIG_DIR',            HF_RESOURCES_DIR . '/config');
 
 
 ###

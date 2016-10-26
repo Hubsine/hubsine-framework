@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Yaml\Yaml;
 use Hubsine\Framework\Http\Session;
 use Hubsine\Framework\Http\Request;
+use Hubsine\Framework\DependencyInjection\LoaderFactory;
 
 /**
  * Description of HubsineFrameworkPlugin
@@ -37,12 +38,12 @@ class HubsineFrameworkPlugin {
         return self::instance();
     }
     
-    public function getContainer(){
-        return $this->_container;
-    }
-
     public static function getLocaleFromWp(){
         return explode('_', get_locale())[0];
+    }
+    
+    private function getContainer(){
+        return $this->_container;
     }
 
     protected function initContainer(){
@@ -53,12 +54,13 @@ class HubsineFrameworkPlugin {
         ###
         # Config
         ###
-        
-        $fileLocator = new FileLocator(DM_CONFIG_DIR); 
-        $loader     = new YamlFileLoader($container, $fileLocator);
+
+        $loaderFactory = new LoaderFactory($container);
+        $loader        = $loaderFactory->getLoaderBy('yml', HF_CONFIG_DIR);
         
         $loader->load('parameters.yml');
         $loader->load('services.yml');
+
         
         ###
         # Init Synthetic Service = 
@@ -85,6 +87,7 @@ class HubsineFrameworkPlugin {
         # Synthetic serice 
         ###
         
+        $container->set('loader_factory', $loaderFactory);
         $container->set('session', $session);
         $container->set('request', $request);
         

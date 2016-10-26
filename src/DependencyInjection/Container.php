@@ -5,7 +5,7 @@ namespace Hubsine\Framework\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Description of Container
+ * ContainerBuilder is a DI container that provides an API to easily describe services.
  *
  * @author nsi
  */
