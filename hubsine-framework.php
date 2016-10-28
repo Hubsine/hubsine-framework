@@ -21,15 +21,12 @@ if( !defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/defines.php';
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/DependencyInjection/Container.php';
-#require_once __DIR__ . '/HubsineFrameworkPlugin.php';
 
 ###
 # Used
 ###
 
 use Composer\Autoload\ClassLoader;
-use Hubsine\Framework\DependencyInjection\Container;
-#use Hubsine\HubsineFrameworkPlugin;
 
 ###
 # Class Loader By Composer
@@ -42,15 +39,12 @@ $classMap = array(
 );
 
 $loader->addClassMap($classMap);
-#$loader->addPsr4('Hubsine\\', __DIR__);
-#$loader->addPsr4('Hubsine\\', __DIR__, true);
 $loader->addPsr4('Hubsine\\Framework\\', __DIR__ . '/src', true);
-#$loader->addPsr4('Hubsine\\Framework\\DependencyInjection\\', __DIR__ . '/src/DependencyInjection');
 
 $loader->register();
 
 ###
 # Init 
 ###
-#$container = new Container();
+
 $hubsineFrameworkPlugin = \HubsineFrameworkPlugin::instance();

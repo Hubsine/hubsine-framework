@@ -14,6 +14,19 @@ use Symfony\Component\HttpFoundation\Request as BaseRequest;
  */
 class Request extends BaseRequest{
     
+    /**
+     * Constructor
+     * 
+     * @param array $query
+     * @param array $request
+     * @param array $attributes
+     * @param array $cookies
+     * @param array $files
+     * @param array $server
+     * @param type $content
+     * 
+     * @see parent::__construct()
+     */
     public function __construct(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null) {
         parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
     }

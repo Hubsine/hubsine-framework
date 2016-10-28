@@ -1,15 +1,13 @@
 <?php
 
 use Hubsine\Framework\DependencyInjection\Container;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\Yaml\Yaml;
 use Hubsine\Framework\Http\Session;
 use Hubsine\Framework\Http\Request;
 use Hubsine\Framework\DependencyInjection\LoaderFactory;
+use Composer\Autoload\ClassLoader;
 
 /**
- * Description of HubsineFrameworkPlugin
+ * HubsineFrameworkPlugin
  *
  * @author Hubsine
  */
@@ -18,34 +16,85 @@ class HubsineFrameworkPlugin {
     const VERSION = '0.1';
     
     private static $_instance;
+    private $_classLoader;
     private $_container;
 
+    /**
+     * Main HubsineFrameworkPlugin instance
+     * 
+     * @static
+     * @return HubsineFrameworkPlugin
+     */
     public static function instance()
     {
         
         if( !self::$_instance )
         {
+            
             self::$_instance = new self();
             self::$_instance->hooks();
+            self::$_instance->_classLoader = new ClassLoader();
             self::$_instance->initContainer();
         }
         
         return self::$_instance;
     }
     
+    /**
+     * Get HubsineFrameworkPlugin unique instance
+     * 
+     * @static
+     * @return HubsineFrameworkPlugin
+     */
     public static function getInstance()
     {
         return self::instance();
     }
     
+    /**
+     * Local from wordpress
+     * @static
+     * @return string
+     */
     public static function getLocaleFromWp(){
         return explode('_', get_locale())[0];
     }
-    
-    private function getContainer(){
+
+    /**
+     * 
+     * Get DIC container
+     * 
+     * @return Hubsine\Framework\DependencyInjection\Container
+     */
+    public function getContainer(){
         return $this->_container;
     }
 
+    /**
+     * Get composer ClassLoader to auto-load PHP class in Psr0, Psr4 or ClassMap 
+     * 
+     * @return Composer\Autoload\ClassLoader
+     */
+    public function getClassLoader(){
+        return $this->_classLoader;
+    }
+
+    /**
+     * 
+     * Get service instance in DIC container 
+     * 
+     * @see Hubsine\Framework\DependencyInjection\Container::get()
+     * @param string $serviceId The unique service id
+     * 
+     * @return mixed
+     */
+    public function get($serviceId){
+        return $this->_container->get($serviceId);
+    }
+
+    /**
+     * Init DIC Container with default parameters and services 
+     */
     protected function initContainer(){
         
         $container = new Container();
@@ -94,10 +143,11 @@ class HubsineFrameworkPlugin {
         ### Final ###
         
         $this->_container = $container;
-        
     }
     
-    
+    /**
+     * Plugin Hooks
+     */
     private function hooks(){
         
         add_action('init', array($this, 'dm_session_start'));
@@ -106,6 +156,9 @@ class HubsineFrameworkPlugin {
         
     }
     
+    /**
+     * To work, a session must be starting. So, a session is launched if no session is launched
+     */
     public function dm_session_start(){
         
         if(!session_id()){
@@ -113,6 +166,9 @@ class HubsineFrameworkPlugin {
         }
     }
     
+    /**
+     * Load Plugin Resources to BackEnd
+     */
     public function load_wp_back_end_resources(){
         
         ###
@@ -133,6 +189,9 @@ class HubsineFrameworkPlugin {
         wp_localize_script('dm-back-end', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
     }
     
+    /**
+     * Load Plugin Resources to FrontEnd
+     */
     public function load_wp_front_end_resources(){
         
         ###

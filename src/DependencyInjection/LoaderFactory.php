@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
 
 
 /**
- * LoaderFactory gère le chargement des fichiers de configurations des plugins et thème
+ * LoaderFactory is use to get FileLoader
  *
  * @author Hubsine
  */
@@ -24,12 +24,28 @@ class LoaderFactory {
         'xml' => XmlFileLoader::class
         );
 
+    /**
+     *
+     * @var Hubsine\Framework\DependencyInjection\Container
+     */
     protected $container;
     
+    /**
+     * 
+     * @param Container $container
+     */
     public function __construct(Container $container) {
         $this->container = $container;
     }
 
+    /**
+     * Get Loader for load into container your config file in yml, php or xml format
+     * 
+     * @param stringt $loaderType yml | php | xml
+     * @param mixed $paths Paths where your config file is located
+     * 
+     * @return boolean|Symfony\Component\Config\Loader\LoaderInterface
+     */
     public function getLoaderBy($loaderType, $paths = array()){
         
         $fileLocator = new FileLocator($paths);
