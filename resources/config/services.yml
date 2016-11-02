@@ -12,6 +12,11 @@ services:
     request:
         class: %request.class%
         synthetic: true
+    base.controller:
+        class: %base.controller.class%
+        #synthetic: true
+        calls:
+            - [setContainer, ['@container']]
 #    validator:
 #        class: %validator.class%
 #    translator: 

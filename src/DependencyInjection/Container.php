@@ -11,5 +11,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class Container extends ContainerBuilder{
    
+    protected function loadShortcodes(){
+        
+    }
     
 }

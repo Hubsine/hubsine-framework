@@ -3,7 +3,7 @@
 use Hubsine\Framework\DependencyInjection\Container;
 use Hubsine\Framework\Http\Session;
 use Hubsine\Framework\Http\Request;
-use Hubsine\Framework\DependencyInjection\LoaderFactory;
+use Hubsine\Framework\DependencyInjection\Loader\LoaderFactory;
 use Composer\Autoload\ClassLoader;
 
 /**
@@ -30,7 +30,6 @@ class HubsineFrameworkPlugin {
         
         if( !self::$_instance )
         {
-            
             self::$_instance = new self();
             self::$_instance->hooks();
             self::$_instance->_classLoader = new ClassLoader();

@@ -1,8 +1,9 @@
 parameters: 
     container.class: Hubsine\Framework\DependencyInjection\Container
-    loader_factory.class: Hubsine\Framework\DependencyInjection\LoaderFactory
+    loader_factory.class: Hubsine\Framework\DependencyInjection\Loader\LoaderFactory
     session.class: Hubsine\Framework\Http\Session
     request.class: Hubsine\Framework\Http\Request
+    base.controller.class: Hubsine\Framework\http\Controller\BaseController
 #    validator.class: DMarketPlace\Framework\Validator\Validator
 #    base.controller.class: DMarketPlace\Framework\Controller\BaseController
 #    controller.resolver.class: DMarketPlace\Framework\Controller\Resolver\ControllerResolver     

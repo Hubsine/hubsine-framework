@@ -1,14 +1,12 @@
 <?php
 
-namespace Hubsine\Framework\DependencyInjection;
+namespace Hubsine\Framework\DependencyInjection\Loader;
 
 use Hubsine\Framework\DependencyInjection\Container;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
-use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
+use Hubsine\Framework\DependencyInjection\Loader\YamlFileLoader;
+use Hubsine\Framework\DependencyInjection\Loader\PhpFileLoader;
+use Hubsine\Framework\DependencyInjection\Loader\XmlFileLoader;
 
 
 /**
