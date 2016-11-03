@@ -12,6 +12,7 @@
 namespace Hubsine\Framework\DependencyInjection\Loader;
 
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader as BasePhpFileLoader;
+use Hubsine\Framework\DependencyInjection\Loader\LoaderFileTrait;
 
 /**
  * PhpFileLoader loads service definitions from a PHP file.
@@ -23,6 +24,8 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader as BasePhpFileLoa
  */
 class PhpFileLoader extends BasePhpFileLoader
 {
+    use LoaderFileTrait;
+    
     /**
      * {@inheritdoc}
      */
@@ -37,6 +40,9 @@ class PhpFileLoader extends BasePhpFileLoader
         $this->container->addResource(new FileResource($path));
 
         include $path;
+        
+        // Init shortcode
+        $this->loadShortcodes();
     }
 
     /**

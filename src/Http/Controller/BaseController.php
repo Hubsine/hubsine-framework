@@ -33,7 +33,7 @@ class BaseController implements ControllerInterface{
         return $this->container->get($serviceID);
     }
     
-    public function setContainet(Container $container){
+    public function setContainer(Container $container){
         $this->container = $container;
     }
 }

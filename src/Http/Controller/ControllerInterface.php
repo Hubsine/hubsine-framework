@@ -2,6 +2,8 @@
 
 namespace Hubsine\Framework\Http\Controller;
 
+use Hubsine\Framework\DependencyInjection\Container;
+
 /**
  * ControllerInterface
  *
@@ -9,5 +11,8 @@ namespace Hubsine\Framework\Http\Controller;
  */
 interface ControllerInterface {
     
+    public function setContainer(Container $container);
+    
+    public function get($serviceID);
     
 }

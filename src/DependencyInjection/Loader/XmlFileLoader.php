@@ -22,6 +22,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader as BaseXmlFileLoader;
+use Hubsine\Framework\DependencyInjection\Loader\LoaderFileTrait;
 
 /**
  * XmlFileLoader loads XML files service definitions.
@@ -30,6 +31,8 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader as BaseXmlFileLoa
  */
 class XmlFileLoader extends BaseXmlFileLoader
 {
+    use LoaderFileTrait;
+    
     const NS = 'http://symfony.com/schema/dic/services';
 
     /**
@@ -57,14 +60,10 @@ class XmlFileLoader extends BaseXmlFileLoader
 
         // services
         $this->parseDefinitions($xml, $path);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function supports($resource, $type = null)
-    {
-        return is_string($resource) && 'xml' === pathinfo($resource, PATHINFO_EXTENSION);
+        
+        // init shortcode 
+        $this->loadShortcodes();
+        
     }
 
     /**
@@ -420,80 +419,6 @@ class XmlFileLoader extends BaseXmlFileLoader
         }
 
         return $children;
-    }
-
-    /**
-     * Validates a documents XML schema.
-     *
-     * @param \DOMDocument $dom
-     *
-     * @return bool
-     *
-     * @throws RuntimeException When extension references a non-existent XSD file
-     */
-    public function validateSchema(\DOMDocument $dom)
-    {
-        $schemaLocations = array('http://symfony.com/schema/dic/services' => str_replace('\\', '/', __DIR__.'/schema/dic/services/services-1.0.xsd'));
-
-        if ($element = $dom->documentElement->getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'schemaLocation')) {
-            $items = preg_split('/\s+/', $element);
-            for ($i = 0, $nb = count($items); $i < $nb; $i += 2) {
-                if (!$this->container->hasExtension($items[$i])) {
-                    continue;
-                }
-
-                if (($extension = $this->container->getExtension($items[$i])) && false !== $extension->getXsdValidationBasePath()) {
-                    $path = str_replace($extension->getNamespace(), str_replace('\\', '/', $extension->getXsdValidationBasePath()).'/', $items[$i + 1]);
-
-                    if (!is_file($path)) {
-                        throw new RuntimeException(sprintf('Extension "%s" references a non-existent XSD file "%s"', get_class($extension), $path));
-                    }
-
-                    $schemaLocations[$items[$i]] = $path;
-                }
-            }
-        }
-
-        $tmpfiles = array();
-        $imports = '';
-        foreach ($schemaLocations as $namespace => $location) {
-            $parts = explode('/', $location);
-            if (0 === stripos($location, 'phar://')) {
-                $tmpfile = tempnam(sys_get_temp_dir(), 'sf2');
-                if ($tmpfile) {
-                    copy($location, $tmpfile);
-                    $tmpfiles[] = $tmpfile;
-                    $parts = explode('/', str_replace('\\', '/', $tmpfile));
-                }
-            }
-            $drive = '\\' === DIRECTORY_SEPARATOR ? array_shift($parts).'/' : '';
-            $location = 'file:///'.$drive.implode('/', array_map('rawurlencode', $parts));
-
-            $imports .= sprintf('  <xsd:import namespace="%s" schemaLocation="%s" />'."\n", $namespace, $location);
-        }
-
-        $source = <<<EOF
-<?xml version="1.0" encoding="utf-8" ?>
-<xsd:schema xmlns="http://symfony.com/schema"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://symfony.com/schema"
-    elementFormDefault="qualified">
-
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-$imports
-</xsd:schema>
-EOF
-        ;
-
-        $disableEntities = libxml_disable_entity_loader(false);
-        $valid = @$dom->schemaValidateSource($source);
-        libxml_disable_entity_loader($disableEntities);
-
-        foreach ($tmpfiles as $tmpfile) {
-            @unlink($tmpfile);
-        }
-
-        return $valid;
     }
 
     /**

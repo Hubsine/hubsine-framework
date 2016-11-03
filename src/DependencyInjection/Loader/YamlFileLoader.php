@@ -23,6 +23,7 @@ use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser as YamlParser;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader as BaseYamlFileLoader;
+use Hubsine\Framework\DependencyInjection\Loader\LoaderFileTrait;
 
 /**
  * YamlFileLoader loads YAML files service definitions.
@@ -33,6 +34,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader as BaseYamlFileL
  */
 class YamlFileLoader extends BaseYamlFileLoader
 {
+    use LoaderFileTrait;
     
     private static $keywords = array(
         'alias' => 'alias',
@@ -96,15 +98,8 @@ class YamlFileLoader extends BaseYamlFileLoader
         // services
         $this->parseDefinitions($content, $resource);
         
-        $shortcodes = $this->container->findTaggedServiceIds('wp.shortcode');
-        foreach ($shortcodes as $id => $tags) {
-            $definition = $this->container->getDefinition($id);
-            if(! $definition->isSynthetic() ){
-                $this->container->get($id);
-            }
-            
-            
-        }
+        // init shortcode
+        $this->loadShortcodes();
     }
 
     /**

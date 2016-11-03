@@ -26,7 +26,7 @@ class LoaderFactory {
      *
      * @var Hubsine\Framework\DependencyInjection\Container
      */
-    protected $container;
+    private $container;
     
     /**
      * 
