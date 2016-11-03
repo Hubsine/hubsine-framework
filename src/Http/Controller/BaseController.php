@@ -19,9 +19,8 @@ class BaseController implements ControllerInterface{
      * 
      * @param Container $container
      */
-//    public function __construct(Container $container){
-//        $this->container = $container;
-//    }
+    private function __construct(){
+    }
     
     /**
      * Get a service in container
