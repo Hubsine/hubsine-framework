@@ -1,9 +1,9 @@
 <?php
 
-namespace Hubsine\Framework\http\Controller;
+namespace Hubsine\Framework\Controller;
 
-use Hubsine\Framework\http\Controller\BaseController;
-use Hubsine\Framework\Http\Controller\BaseShortcodeControllerInterface;
+use Hubsine\Framework\Controller\BaseController;
+use Hubsine\Framework\Controller\BaseShortcodeControllerInterface;
 
 /**
  * Description of BaseShortcodeController

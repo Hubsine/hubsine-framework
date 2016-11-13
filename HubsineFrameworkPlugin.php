@@ -5,6 +5,8 @@ use Hubsine\Framework\Http\Session;
 use Hubsine\Framework\Http\Request;
 use Hubsine\Framework\DependencyInjection\Loader\LoaderFactory;
 use Composer\Autoload\ClassLoader;
+use Hubsine\Framework\Translation\Translator;
+use Hubsine\Framework\Validation\ValidatorFactory;
 
 /**
  * HubsineFrameworkPlugin
@@ -18,6 +20,8 @@ class HubsineFrameworkPlugin {
     private static $_instance;
     private $_classLoader;
     private $_container;
+    private static $_yamlMappingsValidator = array();
+    private static $_xmlMappingsValidator = array();
 
     /**
      * Main HubsineFrameworkPlugin instance
@@ -94,7 +98,7 @@ class HubsineFrameworkPlugin {
     /**
      * Init DIC Container with default parameters and services 
      */
-    protected function initContainer(){
+    private function initContainer(){
         
         $container = new Container();
         $container->set('container', $container);
@@ -104,10 +108,10 @@ class HubsineFrameworkPlugin {
         ###
 
         $loaderFactory = new LoaderFactory($container);
-        $loader        = $loaderFactory->getLoaderBy('yml', HF_CONFIG_DIR);
+        $ymlLoader     = $loaderFactory->getLoaderBy('yml', HF_CONFIG_DIR);
         
-        $loader->load('parameters.yml');
-        $loader->load('services.yml');
+        $ymlLoader->load('parameters.yml');
+        $ymlLoader->load('services.yml');
 
         
         ###
@@ -127,17 +131,26 @@ class HubsineFrameworkPlugin {
         $request->setLocale(self::getLocaleFromWp());
         
         ###
-        # Init Default Service Before Used
+        # Translator
+        ##
+        
+        $translator = new Translator();
+        
+        ###
+        # Validator
         ###
         
+        $validatorFactory = new ValidatorFactory();
         
         ###
-        # Synthetic serice 
+        # Synthetic serice - Init Default Service Before Used
         ###
         
         $container->set('loader_factory', $loaderFactory);
         $container->set('session', $session);
         $container->set('request', $request);
+        $container->set('translator', $translator);
+        $container->set('validator_factory', $validatorFactory);
         
         ### Final ###
         
@@ -152,7 +165,7 @@ class HubsineFrameworkPlugin {
         add_action('init', array($this, 'dm_session_start'));
         add_action('admin_enqueue_scripts', array($this, 'load_wp_back_end_resources'));
         add_action('wp_enqueue_scripts', array($this, 'load_wp_front_end_resources'));
-        
+
     }
     
     /**

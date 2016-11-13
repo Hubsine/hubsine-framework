@@ -1,6 +1,6 @@
 <?php
 
-namespace Hubsine\Framework\Http\Controller;
+namespace Hubsine\Framework\Controller;
 
 use Hubsine\Framework\DependencyInjection\Container;
 
@@ -11,8 +11,16 @@ use Hubsine\Framework\DependencyInjection\Container;
  */
 interface ControllerInterface {
     
+    /**
+     * 
+     * @param Container $container
+     */
     public function setContainer(Container $container);
     
+    /**
+     * 
+     * @param string $serviceID
+     */
     public function get($serviceID);
     
 }

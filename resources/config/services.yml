@@ -14,11 +14,14 @@ services:
         synthetic: true
     base.controller:
         class: %base.controller.class%
-        #synthetic: true
-        calls:
+        calls: 
             - [setContainer, ['@container']]
-#    validator:
-#        class: %validator.class%
+    translator:
+        class: %translator.class%
+        synthetic: true
+    validator_factory:
+        class: %validator_factory.class%
+        synthetic: true
 #    translator: 
 #        class: %translator.class%
 #        arguments: [%locale%]

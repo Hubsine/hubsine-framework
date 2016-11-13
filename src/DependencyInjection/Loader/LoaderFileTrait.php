@@ -3,12 +3,17 @@
 namespace Hubsine\Framework\DependencyInjection\Loader;
 
 /**
- * Description of LoaderFileTrait
+ * LoaderFileTrait
  *
  * @author Hubsine
  */
 trait LoaderFileTrait {
     
+    /**
+     * load and init shortcode class taged by wp.shortcode
+     * 
+     * @uses add_shortcode() 
+     */
     public function loadShortcodes(){
         
         $shortcodes = $this->container->findTaggedServiceIds('wp.shortcode');

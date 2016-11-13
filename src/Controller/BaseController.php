@@ -1,9 +1,9 @@
 <?php
 
-namespace Hubsine\Framework\http\Controller;
+namespace Hubsine\Framework\Controller;
 
 use Hubsine\Framework\DependencyInjection\Container;
-use Hubsine\Framework\Http\Controller\ControllerInterface;
+use Hubsine\Framework\Controller\ControllerInterface;
 
 /**
  * BaseController
@@ -15,14 +15,6 @@ class BaseController implements ControllerInterface{
     protected $container;
     
     /**
-     * Constructor
-     * 
-     * @param Container $container
-     */
-    private function __construct(){
-    }
-    
-    /**
      * Get a service in container
      * 
      * @param string $serviceID
@@ -32,6 +24,10 @@ class BaseController implements ControllerInterface{
         return $this->container->get($serviceID);
     }
     
+    /**
+     * 
+     * @param Container $container
+     */
     public function setContainer(Container $container){
         $this->container = $container;
     }

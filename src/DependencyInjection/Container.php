@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * ContainerBuilder is a DI container that provides an API to easily describe services.
  *
- * @author nsi
+ * @author Hubsine
  */
 class Container extends ContainerBuilder{
    

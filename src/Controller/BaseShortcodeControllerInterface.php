@@ -1,6 +1,6 @@
 <?php
 
-namespace Hubsine\Framework\Http\Controller;
+namespace Hubsine\Framework\Controller;
 
 /**
  * ControllerInterface
@@ -9,6 +9,11 @@ namespace Hubsine\Framework\Http\Controller;
  */
 interface BaseShortcodeControllerInterface {
 
+    /**
+     * 
+     * @param mixed $atts
+     * @param mixed $content
+     */
     public function shortcodeAction($atts, $content = '');
     
 }

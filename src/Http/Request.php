@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request as BaseRequest;
  *
  * Request
  * 
- * @see http://symfony.com/doc/current/components/http_foundation.html
+ * @link http://symfony.com/doc/current/components/http_foundation.html
  * 
  * @author Hubsine
  */
