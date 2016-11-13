@@ -2,7 +2,7 @@ services:
     container:
         class: %container.class%
         synthetic: true 
-    loader_factory:
+    loader.factory:
         class: %loader_factory.class%
         synthetic: true
         arguments: ['@container']
@@ -20,8 +20,12 @@ services:
         class: %translator.class%
         synthetic: true
     validator_factory:
-        class: %validator_factory.class%
+        class: %validator.factory.class%
         synthetic: true
+    form.factory:
+        class: %form.factory.class%
+        #synthetic: true
+        arguments: ['@validator.factory']
 #    translator: 
 #        class: %translator.class%
 #        arguments: [%locale%]

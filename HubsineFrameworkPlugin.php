@@ -20,8 +20,6 @@ class HubsineFrameworkPlugin {
     private static $_instance;
     private $_classLoader;
     private $_container;
-    private static $_yamlMappingsValidator = array();
-    private static $_xmlMappingsValidator = array();
 
     /**
      * Main HubsineFrameworkPlugin instance
@@ -146,11 +144,11 @@ class HubsineFrameworkPlugin {
         # Synthetic serice - Init Default Service Before Used
         ###
         
-        $container->set('loader_factory', $loaderFactory);
+        $container->set('loader.factory', $loaderFactory);
         $container->set('session', $session);
         $container->set('request', $request);
         $container->set('translator', $translator);
-        $container->set('validator_factory', $validatorFactory);
+        $container->set('validator.factory', $validatorFactory);
         
         ### Final ###
         

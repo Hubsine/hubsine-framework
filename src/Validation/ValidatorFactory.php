@@ -45,7 +45,8 @@ class ValidatorFactory{
         $this->loadConstraints();
         $this->defaultValidator = Validation::createValidatorBuilder()
                 ->addMethodMapping('loadValidatorMetadata')
-                ->enableAnnotationMapping();
+                ->enableAnnotationMapping()
+                ->getValidator();
         
     }
     
@@ -84,16 +85,16 @@ class ValidatorFactory{
         $config = wp_parse_args($configArgs, $this->config);
         $validator = Validation::createValidatorBuilder();
 
+        if(!$config['addYamlMappings'] && !$config['addXmlMappings']){
+            return $this->getDefaultValidator();
+        }
+        
         if($config['enableAnnotationMapping']){
             $validator->enableAnnotationMapping();
         }
         
         if($config['addMethodMapping']){
             $validator->addMethodMapping('loadValidatorMetadata');
-        }
-        
-        if($config['addYamlMappings'] && $config['addXmlMappings']){
-            return $this->getDefaultValidator();
         }
         
         if($config['addYamlMappings']){
