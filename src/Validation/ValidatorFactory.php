@@ -24,7 +24,7 @@ class ValidatorFactory{
      *
      * @var Symfony\Component\Validator\Validator\RecursiveValidator
      */
-    private  $defaultValidator;
+    private  $_defaultValidator;
     
     /**
      *
@@ -43,7 +43,7 @@ class ValidatorFactory{
     public function __construct() {
         
         $this->loadConstraints();
-        $this->defaultValidator = Validation::createValidatorBuilder()
+        $this->_defaultValidator = Validation::createValidatorBuilder()
                 ->addMethodMapping('loadValidatorMetadata')
                 ->enableAnnotationMapping()
                 ->getValidator();
@@ -71,16 +71,16 @@ class ValidatorFactory{
      * @return Symfony\Component\Validator\Validator\RecursiveValidator
      */
     public function getDefaultValidator(){
-        return $this->defaultValidator;
+        return $this->_defaultValidator;
     }
 
     /**
      * Get validator
      * 
-     * @param array|string $configArgs 
+     * @param array $configArgs 
      * @return Symfony\Component\Validator\Validator\RecursiveValidator Validator to validate object or proprety
      */
-    public function getValidator($configArgs){
+    public function getValidator($configArgs = array()){
         
         $config = wp_parse_args($configArgs, $this->config);
         $validator = Validation::createValidatorBuilder();

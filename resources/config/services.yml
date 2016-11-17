@@ -19,7 +19,9 @@ services:
     translator:
         class: %translator.class%
         synthetic: true
-    validator_factory:
+#    validator.builder:
+#        class: %validator.builder.class%
+    validator.factory:
         class: %validator.factory.class%
         synthetic: true
     form.factory:

@@ -5,6 +5,7 @@ parameters:
     request.class: Hubsine\Framework\Http\Request
     base.controller.class: Hubsine\Framework\http\Controller\BaseController
     translator.class: Hubsine\Framework\Translator\Translator
+    #validator.builder.class: Hubsine\Framework\Validation\ValidatorBuilder
     validator.factory.class: Hubsine\Framework\Validation\ValidatorFactory
     form.factory.class: Hubsine\Framework\Form\FormFactory
 #    validator.class: DMarketPlace\Framework\Validator\Validator

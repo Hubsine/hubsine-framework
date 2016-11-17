@@ -18,8 +18,8 @@ use Symfony\Component\Translation\Loader\LoaderInterface;
 class Translator extends BaseTranslator {
     
     #public $translator;
-    private $defaultDomains = array('forms', 'messages', 'validators', 'admin');
-    private $defaultLoaders = array('yaml', 'xlf', 'php');
+    #private $defaultDomains = array('forms', 'messages', 'validators', 'admin');
+    private $_defaultLoaders = array('yaml', 'xlf', 'php');
 
     public function __construct($locale = null) {
         
@@ -49,7 +49,7 @@ class Translator extends BaseTranslator {
      */
     public function addLoader($format, LoaderInterface $loader) {
         
-        if(array_key_exists($format, $this->defaultLoaders)
+        if(array_key_exists($format, $this->_defaultLoaders)
                 && !array_key_exists($format, $this->getLoaders())){
             
             parent::addLoader($format, $loader);

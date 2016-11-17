@@ -1,0 +1,13 @@
+themes:
+    sellegance_child:
+        imports:
+            - { resource: parameters.yml }
+            - { resource: services.yml }
+            - { resource: shortcodes.yml }
+            - { resource: validation.yml }
+        type: parent-theme or child-theme
+        templating: php or twig
+        #pas sur que ce soit utile
+        config: yaml, xml, php 
+        theme_folder_name: sellegance-child
+        
