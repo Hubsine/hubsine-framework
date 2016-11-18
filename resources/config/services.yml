@@ -28,6 +28,14 @@ services:
         class: %form.factory.class%
         #synthetic: true
         arguments: ['@validator.factory']
+    templating.twig:
+        class: %templating.twig.class%
+        arguments: ['@request', '@translator']
+    templating.php:
+        class: %templating.php.class%
+    templating: 
+        class: %templating.class%
+        arguments: ['@templating.twig','@templating.php']
 #    translator: 
 #        class: %translator.class%
 #        arguments: [%locale%]

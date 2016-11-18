@@ -8,6 +8,9 @@ parameters:
     #validator.builder.class: Hubsine\Framework\Validation\ValidatorBuilder
     validator.factory.class: Hubsine\Framework\Validation\ValidatorFactory
     form.factory.class: Hubsine\Framework\Form\FormFactory
+    templating.twig.class: Hubsine\Framework\Templating\TwigEngine
+    templating.php.class: Hubsine\Framework\Templating\PhpEngine
+    templating.class: Hubsine\Framework\Templating\TemplatingFactory
 #    validator.class: DMarketPlace\Framework\Validator\Validator
 #    base.controller.class: DMarketPlace\Framework\Controller\BaseController
 #    controller.resolver.class: DMarketPlace\Framework\Controller\Resolver\ControllerResolver     

@@ -10,6 +10,8 @@ use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Hubsine\Framework\Http\Request;
 use Hubsine\Framework\Translation\Translator;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Bridge\Twig\Extension\FormExtension;
+use Symfony\Bridge\Twig\Form\TwigRenderer;
 
 /**
  * TwigEngine
@@ -18,7 +20,7 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
  *
  * @author Hubsine
  */
-class TwigEngine extends BaseTwigEngine{
+class TwigEngine extends BaseTwigEngine {
 
     private $_request;
     private $_translator;
@@ -84,7 +86,6 @@ class TwigEngine extends BaseTwigEngine{
     }
     
     public function addPath($path, $namespace = self::MAIN_NAMESPACE){
-        
-        $this->environment->getLoader()->addPath($path, $namespace = self::MAIN_NAMESPACE);
+        $this->environment->getLoader()->addPath($path, $namespace);
     }
 }
