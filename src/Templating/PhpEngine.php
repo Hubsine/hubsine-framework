@@ -16,6 +16,9 @@ use Symfony\Component\Templating\Helper\SlotsHelper;
  */
 class PhpEngine extends BasePhpEngine{
 
+    /**
+     * Constructor 
+     */
     public function __construct() {
         
         $loader = new FilesystemLoader(HF_RESOURCES_DIR . '/views');

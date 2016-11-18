@@ -25,6 +25,13 @@ class TwigEngine extends BaseTwigEngine {
     private $_request;
     private $_translator;
 
+    /**
+     * 
+     * Constructor 
+     * 
+     * @param Request $request
+     * @param Translator $translator
+     */
     public function __construct(Request $request, Translator $translator) {
         
         $this->_request = $request;
@@ -40,6 +47,13 @@ class TwigEngine extends BaseTwigEngine {
 
     }
     
+    /**
+     * 
+     * Add init global variable
+     * 
+     * @param \Twig_Environment $twigEnv
+     * @return \Twig_Environment
+     */
     private function addGlobal(\Twig_Environment $twigEnv){
         
         $app = new AppVariable();
@@ -54,6 +68,13 @@ class TwigEngine extends BaseTwigEngine {
         return $twigEnv;
     }
     
+    /**
+     * 
+     * Init twig loader and load default twig view from  Symfony View
+     * 
+     * @param \Twig_Environment $twigEnv
+     * @return \Twig_Environment
+     */
     private function loadDefaultViews(\Twig_Environment $twigEnv){
         
         $appVariableReflection = new \ReflectionClass('\Symfony\Bridge\Twig\AppVariable');
@@ -75,6 +96,12 @@ class TwigEngine extends BaseTwigEngine {
         return $twigEnv;
     }
     
+    /**
+     * 
+     * Load default extension
+     * 
+     * @param \Twig_Environment $twigEnv
+     */
     private function loadExtensions(\Twig_Environment $twigEnv){
         
         $formEngine = new TwigRendererEngine();
@@ -85,6 +112,13 @@ class TwigEngine extends BaseTwigEngine {
         $twigEnv->addExtension(new \Twig_Extension_Debug());
     }
     
+    /**
+     * 
+     * Add your resource paths view 
+     * 
+     * @param string $path
+     * @param string $namespace
+     */
     public function addPath($path, $namespace = self::MAIN_NAMESPACE){
         $this->environment->getLoader()->addPath($path, $namespace);
     }
