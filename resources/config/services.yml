@@ -36,6 +36,8 @@ services:
     templating: 
         class: %templating.class%
         arguments: ['@templating.twig','@templating.php']
+    mailer:
+        class: %mailer.class%
 #    translator: 
 #        class: %translator.class%
 #        arguments: [%locale%]
