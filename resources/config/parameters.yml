@@ -11,6 +11,7 @@ parameters:
     templating.php.class: Hubsine\Framework\Templating\PhpEngine
     templating.class: Hubsine\Framework\Templating\TemplatingFactory
     mailer.class: Hubsine\Framework\Mailer\Mailer
+    entity.manager.class: Hubsine\Framework\Repository\EntityManager
 #    validator.class: DMarketPlace\Framework\Validator\Validator
 #    base.controller.class: DMarketPlace\Framework\Controller\BaseController
 #    controller.resolver.class: DMarketPlace\Framework\Controller\Resolver\ControllerResolver     

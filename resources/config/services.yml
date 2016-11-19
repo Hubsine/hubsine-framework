@@ -38,6 +38,8 @@ services:
         arguments: ['@templating.twig','@templating.php']
     mailer:
         class: %mailer.class%
+    entity.manager: 
+        class: %entity.manager.class%
 #    translator: 
 #        class: %translator.class%
 #        arguments: [%locale%]

@@ -2,12 +2,14 @@
 
 namespace Hubsine\Framework\Entity;
 
+use Hubsine\Framework\Entity\EntityInterface;
+
 /**
  * UserMeta
  *
  * @author Hubsine
  */
-class UserMeta {
+class UserMeta implements EntityInterface{
     
     /**
      *

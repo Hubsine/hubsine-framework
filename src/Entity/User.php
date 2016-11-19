@@ -2,6 +2,8 @@
 
 namespace Hubsine\Framework\Entity;
 
+use Hubsine\Framework\Entity\EntityInterface;
+
 /**
  * User
  * 
@@ -26,7 +28,7 @@ namespace Hubsine\Framework\Entity;
  *
  * @author Hubsine
  */
-class User extends \WP_User{
+class User extends \WP_User implements EntityInterface{
     
     public function __construct() {
         
