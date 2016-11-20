@@ -43,6 +43,9 @@ class PhpFileLoader extends BasePhpFileLoader
         
         // Init shortcode
         $this->loadShortcodes();
+        
+        // Init widgets
+        $this->loadWidgets();
     }
 
     /**

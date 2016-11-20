@@ -64,6 +64,9 @@ class XmlFileLoader extends BaseXmlFileLoader
         // init shortcode 
         $this->loadShortcodes();
         
+        // Init widgets
+        $this->loadWidgets();
+        
     }
 
     /**

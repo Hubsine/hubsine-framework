@@ -98,8 +98,11 @@ class YamlFileLoader extends BaseYamlFileLoader
         // services
         $this->parseDefinitions($content, $resource);
         
-        // init shortcode
+        // init shortcodes
         $this->loadShortcodes();
+        
+        // Init widgets
+        $this->loadWidgets();
     }
 
     /**

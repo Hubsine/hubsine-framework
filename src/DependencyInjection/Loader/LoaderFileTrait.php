@@ -31,4 +31,28 @@ trait LoaderFileTrait {
             }
         }
     }
+    
+    /**
+     * load and init widget class taged by wp.widget
+     * 
+     * @uses register_widget() 
+     */
+    public function loadWidgets(){
+        
+        $widgets = $this->container->findTaggedServiceIds('wp.widget');
+        
+        foreach ($widgets as $id => $tags) {
+            
+            $definition = $this->container->getDefinition($id);
+            
+            if( ! $definition->isSynthetic() ){
+                
+                $widget = $this->container->get($id);
+
+                global $wp_widget_factory;
+
+                add_action('widgets_init', $wp_widget_factory->register($widget));
+            }
+        }
+    }
 }
