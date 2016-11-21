@@ -33,7 +33,7 @@ class Translator extends BaseTranslator {
         ###
         
         $this->addLoader('yaml', new YamlFileLoader());
-        $this->addLoader('xliff', new XliffFileLoader());
+        $this->addLoader('xlf', new XliffFileLoader());
         
         $this->loadDefaultTranslations();
     }
@@ -49,7 +49,7 @@ class Translator extends BaseTranslator {
      */
     public function addLoader($format, LoaderInterface $loader) {
         
-        if(array_key_exists($format, $this->_defaultLoaders)
+        if(in_array($format, $this->_defaultLoaders)
                 && !array_key_exists($format, $this->getLoaders())){
             
             parent::addLoader($format, $loader);
