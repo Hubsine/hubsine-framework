@@ -32,9 +32,11 @@ class HubsineFrameworkPlugin {
         
         if( !self::$_instance )
         {
+            global $hfLoader;
+            
             self::$_instance = new self();
             self::$_instance->hooks();
-            self::$_instance->_classLoader = new ClassLoader();
+            self::$_instance->_classLoader = $hfLoader;
             self::$_instance->initContainer();
         }
         
