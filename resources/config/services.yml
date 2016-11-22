@@ -40,39 +40,5 @@ services:
         class: %mailer.class%
     entity.manager: 
         class: %entity.manager.class%
-#    translator: 
-#        class: %translator.class%
-#        arguments: [%locale%]
-#    twig:
-#        class: %twig.class%
-#        arguments: ['@translator', %form_theme%]
-#    form.factory:
-#        class: %form.factory.class%
-#        arguments: ['@validator']
-#    base.controller:
-#        class: %base.controller.class%
-#        arguments: ['@container']
-#    controller.resolver: 
-#        class: %controller.resolver.class%
-#        arguments: ['@container']
-#        #synthetic: true
-#    shortcode.seller:
-#        class: %shortcode.seller.class%
-#        arguments: ['@controller.resolver']
-#    repository.manager:
-#        class: %repository.manager.class%
-#        #arguments: ['@repository.base']    
-##    repository.base:
-##        class: %repository.base.class%
-#        #arguments: ['@repository.manager']
-#    #mappin.annotation_manager: 
-#        #class: %mapping.annotation_manager.class%    
-#    wp.roles_caps:
-#        class: %wp.roles_caps.class%
-#        arguments: ['@translator']
-#    swift.mailer:
-#        class: %swift.mailer.class%
-#    swift.message:
-#        class: %swift.message.class%
-#        #arguments: [%mailer.param%]
+
         

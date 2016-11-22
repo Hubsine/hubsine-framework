@@ -32,5 +32,24 @@ class BaseController implements ControllerInterface{
         $this->container = $container;
     }
     
+    public function createBuilderForm($type = 'Symfony\Component\Form\Extension\Core\Type\FormType', $data = null, array $options = array()){
+        return $this->get('form.factory')->createBuilder($type, $data, $options);
+    }
+
+    public function renderView($name, $parameters = array()){
+        return $this->get('templating')->render($name, $parameters);
+    }
+    
+    public function validate($entityObject){
+        return $this->get('validator')->validate($entityObject);      
+    }
+    
+    public function trans($id, array $parameters = array(), $domain = null, $locale = null){
+        return $this->get('translator')->trans($id, $parameters, $domain, $locale);
+    }
+    
+    public function flashBag(){
+        return $this->get('session')->getFlashBag();
+    }
    
 }
