@@ -38,16 +38,20 @@ use Composer\Autoload\ClassLoader;
 ###
 
 global $hfLoader;
-$hfLoader = new ClassLoader();
 
-$classMap = array(
-    'HubsineFrameworkPlugin'    => __DIR__ . '/HubsineFrameworkPlugin.php'
-);
+if(is_null($hfLoader)){
+    
+    $hfLoader = new ClassLoader();
+ 
+    $classMap = array(
+        'HubsineFrameworkPlugin'    => __DIR__ . '/HubsineFrameworkPlugin.php'
+    );
 
-$hfLoader->addClassMap($classMap);
-$hfLoader->addPsr4('Hubsine\\Framework\\', __DIR__ . '/src', true);
+    $hfLoader->addClassMap($classMap);
+    $hfLoader->addPsr4('Hubsine\\Framework\\', __DIR__ . '/src', true);
 
-$hfLoader->register();
+    $hfLoader->register();
+}
 
 ###
 # Init 
