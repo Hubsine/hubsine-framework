@@ -14,6 +14,11 @@ if( !defined( 'ABSPATH' ) ) {
     die;
 }
 
+//include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+//if (!is_plugin_active('hubsine-framework/hubsine-framework.php')) {
+//    throw new Exception('Sorry. You must activate Hubsine Framework to use it.');
+//}
+
 ###
 # Required files
 ###

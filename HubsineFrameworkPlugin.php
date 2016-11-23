@@ -22,6 +22,12 @@ class HubsineFrameworkPlugin {
     private $_container;
 
     /**
+     * Constructor
+     */
+    private function __construct() {
+    }
+
+    /**
      * Main HubsineFrameworkPlugin instance
      * 
      * @static
