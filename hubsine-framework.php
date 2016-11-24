@@ -37,20 +37,20 @@ use Composer\Autoload\ClassLoader;
 # Class Loader By Composer
 ###
 
-global $hfLoader;
+global $hfClassLoader;
 
-if(is_null($hfLoader)){
+if(is_null($hfClassLoader)){
     
-    $hfLoader = new ClassLoader();
+    $hfClassLoader = new ClassLoader();
  
     $classMap = array(
         'HubsineFrameworkPlugin'    => __DIR__ . '/HubsineFrameworkPlugin.php'
     );
 
-    $hfLoader->addClassMap($classMap);
-    $hfLoader->addPsr4('Hubsine\\Framework\\', __DIR__ . '/src', true);
+    $hfClassLoader->addClassMap($classMap);
+    $hfClassLoader->addPsr4('Hubsine\\Framework\\', __DIR__ . '/src', true);
 
-    $hfLoader->register();
+    $hfClassLoader->register();
 }
 
 ###

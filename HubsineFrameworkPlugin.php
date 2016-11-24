@@ -18,7 +18,6 @@ class HubsineFrameworkPlugin {
     const VERSION = '0.1';
     
     private static $_instance;
-    private $_classLoader;
     private $_container;
 
     /**
@@ -38,11 +37,10 @@ class HubsineFrameworkPlugin {
         
         if( !self::$_instance )
         {
-            global $hfLoader;
+            global $hfClassLoader;
             
             self::$_instance = new self();
             self::$_instance->hooks();
-            self::$_instance->_classLoader = $hfLoader;
             self::$_instance->initContainer();
         }
         
@@ -77,15 +75,6 @@ class HubsineFrameworkPlugin {
      */
     public function getContainer(){
         return $this->_container;
-    }
-
-    /**
-     * Get composer ClassLoader to auto-load PHP class in Psr0, Psr4 or ClassMap 
-     * 
-     * @return Composer\Autoload\ClassLoader
-     */
-    public function getClassLoader(){
-        return $this->_classLoader;
     }
 
     /**
