@@ -14,10 +14,17 @@ if( !defined( 'ABSPATH' ) ) {
     die;
 }
 
+###
+# Check required active plugin
+##
+
 //include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+//
 //if (!is_plugin_active('hubsine-framework/hubsine-framework.php')) {
+//    add_action('admin_notices', 'hf_required_plugin_admin_notice', 10, 1);
 //    throw new Exception('Sorry. You must activate Hubsine Framework to use it.');
 //}
+
 
 ###
 # Required files

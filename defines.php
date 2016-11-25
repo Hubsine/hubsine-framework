@@ -1,5 +1,7 @@
 <?php
 
+define('HF_PLUGIN_NAME', 'Hubsine Framework');
+
 ###
 # Redux OPT NAME
 ###
