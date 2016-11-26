@@ -3,9 +3,12 @@
 namespace Hubsine\Framework\Entity;
 
 use Hubsine\Framework\Entity\EntityInterface;
+use Hubsine\Framework\Entity\EntityTrait;
 
 /**
  * User
+ * 
+ * @inheritdoc
  * 
  * @property string $nickname
  * @property string $description
@@ -28,10 +31,20 @@ use Hubsine\Framework\Entity\EntityInterface;
  *
  * @author Hubsine
  */
-class UserEntity extends \WP_User implements EntityInterface{
+class User extends \WP_User implements EntityInterface{
     
-    public function __construct() {
-        
-        parent::__construct();
+    use EntityTrait;
+    
+    /**
+     * Constructor 
+     * 
+     * @param integer $id
+     * @param string $name
+     * @param mixed $blog_id
+     * @param array $datas Is \WP_User class public property as array format
+     */
+    public function __construct($id = 0, $name = '', $blog_id = '') {
+    
+        parent::__construct($id, $name, $blog_id);
     }
 }

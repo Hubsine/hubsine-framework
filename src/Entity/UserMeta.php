@@ -9,7 +9,7 @@ use Hubsine\Framework\Entity\EntityInterface;
  *
  * @author Hubsine
  */
-class UserMetaEntity implements EntityInterface{
+class UserMeta implements EntityInterface{
     
     /**
      *

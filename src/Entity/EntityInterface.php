@@ -8,4 +8,11 @@ namespace Hubsine\Framework\Entity;
  * @author Hubsine
  */
 class EntityInterface {
+    
+    /**
+     * Hydrate wordpress class property.
+     * 
+     * @param array $datas Is wordpress class attributs
+     */
+    public function hydrateWpEntity(array $datas);
 }
