@@ -28,7 +28,7 @@ use Hubsine\Framework\Entity\EntityInterface;
  *
  * @author Hubsine
  */
-class User extends \WP_User implements EntityInterface{
+class UserEntity extends \WP_User implements EntityInterface{
     
     public function __construct() {
         
