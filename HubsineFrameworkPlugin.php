@@ -35,10 +35,8 @@ class HubsineFrameworkPlugin {
     public static function instance()
     {
         
-        if( !self::$_instance )
+        if( is_null( self::$_instance ))
         {
-            global $hfClassLoader;
-            
             self::$_instance = new self();
             self::$_instance->hooks();
             self::$_instance->initContainer();

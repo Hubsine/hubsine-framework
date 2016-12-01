@@ -19,7 +19,7 @@ class Translator extends BaseTranslator {
     
     #public $translator;
     #private $defaultDomains = array('forms', 'messages', 'validators', 'admin');
-    private $_defaultLoaders = array('yaml', 'xlf', 'php');
+    private $_defaultLoaders = array('yaml', 'xlf', 'php', 'xml');
 
     public function __construct($locale = null) {
         
@@ -42,7 +42,7 @@ class Translator extends BaseTranslator {
      * 
      * @inheritdoc
      * 
-     * @param string $format
+     * @param string $format Format is format of your translation. Can be yaml, xlf or php
      * @param LoaderInterface $loader
      * 
      * @return boolean
